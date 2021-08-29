@@ -30,6 +30,12 @@ export default {
         ]
       }
     },
+    {
+      name: 'exercises',
+      title: 'Exercises',
+      type: 'array',
+      of: [{ type: 'exercise'}]
+    }
   ],
   preview: {
     select: {
