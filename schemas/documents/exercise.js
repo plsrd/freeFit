@@ -9,6 +9,20 @@ export default {
       type: 'string'
     },
     {
+      name: 'demo',
+      title: 'Demo',
+      type: 'array',
+      of: [
+        {
+          title: 'Link',
+          name: 'href',
+          type: 'link',
+        },
+        { type: 'file'},
+        { type: 'image' }
+      ]
+    },
+    {
       name: 'details',
       title: 'Details',
       type: 'details'
