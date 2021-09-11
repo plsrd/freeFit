@@ -1,4 +1,3 @@
-
 import equipment from "../inputs/equipment"
 
 export default {
@@ -36,7 +35,8 @@ export default {
   preview: {
     select: {
       title: 'name',
-      subtitle: 'target.name'
+      subtitle: 'target.name',
+      media: 'demo'
     },
   },
   orderings: [
