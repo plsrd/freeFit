@@ -1,3 +1,6 @@
+
+import equipment from "../inputs/equipment"
+
 export default {
   name: 'exercise',
   title: 'Exercise',
@@ -9,29 +12,47 @@ export default {
       type: 'string'
     },
     {
-      name: 'demo',
-      title: 'Demo',
-      type: 'array',
-      of: [
-        {
-          title: 'Link',
-          name: 'href',
-          type: 'link',
-        },
-        { type: 'file'},
-        { type: 'image' }
-      ]
+      name: 'target',
+      title: 'Main Target Muscle',
+      description: 'Select the muscle this exercise targets',
+      type: 'reference',
+      to: {type: 'target'}
     },
     {
-      name: 'details',
-      title: 'Details',
-      type: 'details'
-    }
+      name: 'equipment',
+      title: 'Main Equipment',
+      description: 'Select the main piece of equipment needed for this exercise',
+      type: 'string',
+      options: {
+        list: equipment,
+      }
+    },
+    {
+      name: 'demo',
+      title: 'Demo',
+      type: 'image',
+    },
   ],
   preview: {
     select: {
       title: 'name',
-      subtitle: 'target'
+      subtitle: 'target.name'
     },
-  }
+  },
+  orderings: [
+    {
+      title: 'Equipment',
+      name: 'equipment',
+      by: [
+        {field: 'equipment', direction: 'asc'}
+      ]
+    },
+    {
+      title: 'Target Muscle',
+      name: 'target',
+      by: [
+        {field: 'target.name', direction: 'asc'}
+      ]
+    }
+  ]
 }

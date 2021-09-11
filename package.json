@@ -21,9 +21,15 @@
     "@sanity/default-login": "^2.17.1",
     "@sanity/desk-tool": "^2.17.1",
     "@sanity/vision": "^2.15.0",
+    "axios": "^0.21.4",
+    "concurrent-queue": "^7.0.2",
+    "fs": "0.0.1-security",
+    "p-queue": "^7.1.0",
+    "path": "^0.12.7",
     "prop-types": "^15.7",
     "react": "^17.0",
-    "react-dom": "^17.0"
+    "react-dom": "^17.0",
+    "uuid": "^8.3.2"
   },
   "devDependencies": {}
 }
