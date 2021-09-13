@@ -1,3 +1,6 @@
+import React from "react"
+import Tile from "../../static/Tile"
+
 export default {
   name: 'target',
   title: 'Target',
@@ -8,5 +11,16 @@ export default {
       title: 'Name',
       type: 'string'
     }
-  ]
+  ],
+  preview: {
+    select: {
+      name: 'name'
+    },
+    prepare({ name }) {
+      return {
+        title: name,
+        media: <Tile equipment={name} />
+      }
+    }
+  }
 }

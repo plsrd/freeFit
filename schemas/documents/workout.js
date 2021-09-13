@@ -1,3 +1,6 @@
+import React from 'react'
+import Tile from '../../static/Tile'
+
 export default {
   name: 'workout',
   titlte: 'Workout',
@@ -48,6 +51,19 @@ export default {
   preview: {
     select: {
       title: 'releaseDate',
+      target0: 'target.0.name',
+      target1: 'target.1.name',
+      target2: 'target.2.name',
+    },
+
+    prepare({ title, target0, target1, target2 }){
+      const targets = [target0, target1, target2].filter(Boolean)
+      const subtitle = `${targets.join(', ')}`
+
+      return {
+        title: title ? title : '',  
+        subtitle: subtitle ? subtitle : ''
+      }
     }
   },
   orderings: [
