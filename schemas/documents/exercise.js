@@ -1,4 +1,5 @@
-import equipment from "../inputs/equipment"
+import React from "react"
+import Tile from "../../static/Tile"
 
 export default {
   name: 'exercise',
@@ -21,10 +22,10 @@ export default {
       name: 'equipment',
       title: 'Main Equipment',
       description: 'Select the main piece of equipment needed for this exercise',
-      type: 'string',
-      options: {
-        list: equipment,
-      }
+      type: 'reference',
+      to: [
+        { type: 'equipment' }
+      ]
     },
     {
       name: 'demo',
@@ -36,20 +37,27 @@ export default {
     select: {
       title: 'name',
       subtitle: 'target.name',
-      media: 'demo'
+      equipment: 'equipment.name'
     },
+    prepare({title, subtitle, equipment}){
+      return {
+        title,
+        subtitle,
+        media: <Tile equipment={equipment} />
+      }
+    }
   },
   orderings: [
     {
       title: 'Equipment',
-      name: 'equipment',
+      name: 'equipmentAsc',
       by: [
         {field: 'equipment', direction: 'asc'}
       ]
     },
     {
       title: 'Target Muscle',
-      name: 'target',
+      name: 'targetAsc',
       by: [
         {field: 'target.name', direction: 'asc'}
       ]

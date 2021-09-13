@@ -13,10 +13,36 @@ export default {
       }
     },
     {
+      name: 'target',
+      title: 'Target Muscle Group(s)',
+      type: 'array',
+      of: [ 
+        { type: 'reference',
+          to: [
+            { type: 'target' }
+          ]
+        }
+      ],
+    },
+    {
+      name: 'equipment',
+      title: 'Equipment',
+      type: 'array',
+      of: [ 
+        { type: 'reference',
+          to: [
+            { type: 'equipment' }
+          ]
+        }
+      ],
+    },
+    {
       name: 'exercises',
       title: 'Exercises',
       type: 'array',
-      of: [{ type: 'exercise'}]
+      of: [
+          { type: 'workoutComponent'}
+      ]
     }
   ],
   preview: {
