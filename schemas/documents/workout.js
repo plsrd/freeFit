@@ -42,7 +42,20 @@ export default {
         { type: 'reference',
           to: [
             { type: 'target' }
-          ]
+          ],
+          options: {
+            filter: ({document}) => {
+              const existingTargets = document.target.map(target => target._ref).filter(Boolean)
+
+              console.log(existingTargets)
+              return {
+                filter: '!(_id in $existingTargets)',
+                params: {
+                  existingTargets
+                }
+              }
+            }
+          }
         }
       ],
     },
