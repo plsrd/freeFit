@@ -1,4 +1,6 @@
 import React from 'react'
+
+import workoutTimeCalculator from '../../src/workoutTimeCalculator'
 import Tile from '../../static/Tile'
 
 export default {
@@ -7,17 +9,34 @@ export default {
   type: 'document',
   fields: [
     {
-      name: 'releaseDate',
-      description: 'Date the workout will be released',
-      title: 'Release Date',
+      name: 'title',
+      description: 'Choose the date the workout will be released',
+      title: 'Title',
       type: 'date',
+      validation: Rule => Rule.required(),
       options: {
         dateFormat: 'MM-DD-YY'
       }
     },
     {
+      title: 'Focus',
+      description: 'Select the type of muscle building this workout focuses on',
+      name: 'focus',
+      type: 'string',
+      validation: Rule => Rule.required(),
+      options: {
+        list: [
+          {title: 'Hypertrophy - increase muscle size', value: 'hypertrophy'},
+          {title: 'Strength - increase the amount of weight you can lift', value: 'strength'}
+        ],
+        layout: 'radio'
+
+      }
+    },
+    {
       name: 'target',
       title: 'Target Muscle Group(s)',
+      description: 'Select the muscle groups this workout targets or leave blank for full body.',
       type: 'array',
       of: [ 
         { type: 'reference',
@@ -30,6 +49,7 @@ export default {
     {
       name: 'equipment',
       title: 'Equipment',
+      description: 'Select the equipment you need for these exercises or leave blank for all equipment.',
       type: 'array',
       of: [ 
         { type: 'reference',
@@ -44,13 +64,19 @@ export default {
       title: 'Exercises',
       type: 'array',
       of: [
-          { type: 'workoutComponent'}
+        { type: 'exerciseComponent'}
       ]
+    },
+    {
+      name: 'workoutLength',
+      title: 'Workout Length',
+      type: 'number',
+      inputComponent: workoutTimeCalculator
     }
   ],
   preview: {
     select: {
-      title: 'releaseDate',
+      title: 'title',
       target0: 'target.0.name',
       target1: 'target.1.name',
       target2: 'target.2.name',
@@ -62,16 +88,17 @@ export default {
 
       return {
         title: title ? title : '',  
-        subtitle: subtitle ? subtitle : ''
+        subtitle: subtitle ? subtitle : '',
+        media: <Tile equipment='workout' />
       }
     }
   },
   orderings: [
     {
       title: 'Release Date',
-      name: 'releaseDateAsc',
+      name: 'titleAsc',
       by: [
-        {field: 'releaseDate', direction: 'asc'}
+        {field: 'title', direction: 'asc'}
       ]
     },
   ]

@@ -29,7 +29,7 @@ export default () =>
       .icon(() => <Tile equipment='builder' />)
       .child(
         S.documentList()
-          .title('Workouts')
+          .title('Workout Builder')
           .filter('_type == "workout"')
           .menuItems(S.documentTypeList('workout').getMenuItems())
       ),

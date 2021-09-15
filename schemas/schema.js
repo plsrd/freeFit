@@ -5,7 +5,7 @@ import schemaTypes from 'all:part:@sanity/base/schema-type'
 import workout from './documents/workout'
 import exercise from './documents/exercise'
 import target from './documents/target'
-import workoutComponent from './objects/workoutComponent'
+import exerciseComponent from './objects/exerciseComponent'
 import equipment from './documents/equipment'
 
 export default createSchema({
@@ -14,7 +14,7 @@ export default createSchema({
     workout,
     exercise,
     target,
-    workoutComponent,
+    exerciseComponent,
     equipment
   ]),
 })

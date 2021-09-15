@@ -16,6 +16,8 @@ const Tile = ({ children, color, background, equipment }) => {
         return 'torso'
       case (equipment == 'Trap Bar'):
         return 'barbell'
+        case (equipment == 'Full Body'):
+          return 'body'
       default:
         return equipment
     }
