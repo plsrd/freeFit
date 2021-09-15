@@ -26,8 +26,8 @@ export default {
       validation: Rule => Rule.required(),
       options: {
         list: [
-          {title: 'Hypertrophy - increase muscle size', value: 'hypertrophy'},
-          {title: 'Strength - increase the amount of weight you can lift', value: 'strength'}
+          {title: 'Hypertrophy', value: 'hypertrophy'},
+          {title: 'Strength', value: 'strength'}
         ],
         layout: 'radio'
 
@@ -80,11 +80,15 @@ export default {
       target0: 'target.0.name',
       target1: 'target.1.name',
       target2: 'target.2.name',
+      workoutLength: 'workoutLength'
     },
 
-    prepare({ title, target0, target1, target2 }){
-      const targets = [target0, target1, target2].filter(Boolean)
-      const subtitle = `${targets.join(', ')}`
+    prepare({ title, target0, target1, target2, workoutLength }){
+      const targets = [target0, target1].filter(Boolean)
+      const subtitle = `${targets.length > 0 ? targets.join(', ') : ''}
+                        ${target2 ? '...' : ''}
+                        ${targets.length > 0 && workoutLength ? ' | ' : ''}
+                        ${workoutLength ? `${workoutLength} min${workoutLength > 1 ? 's' : ''}` : ''}`
 
       return {
         title: title ? title : '',  
