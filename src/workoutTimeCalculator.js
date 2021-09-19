@@ -15,7 +15,8 @@ const workoutTimeCalculator = React.forwardRef((props, ref) => {
   const calculateLength = () => {
     if (!document.exercises) return 0
     const exerciseTimes =  document.exercises.map(exercise => {
-      return (exercise.info.sets * exercise.info.restTime) + (exercise.info.sets * (exercise.info.reps * 2))
+      if (!exercise.info) return 
+      return (exercise.info.sets * exercise.info.restTime) + (exercise.info.sets * (exercise.info.reps * 4))
     })
 
     return exerciseTimes.length > 0 ? Math.round(exerciseTimes.reduce((a, b) => a + b) / 60) : 0

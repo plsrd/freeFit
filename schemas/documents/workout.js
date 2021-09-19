@@ -11,12 +11,14 @@ export default {
     {
       name: 'title',
       title: 'Title',
-      type: 'string'
+      type: 'string',
+      validation: Rule => Rule.required(),
     },
     {
       name: 'type',
       title: 'Workout Type',
       type: 'string',
+      validation: Rule => Rule.required(),
       options: {
         list: [
           {title: 'Part of Program', value: 'program'},
@@ -37,7 +39,7 @@ export default {
         {
           name: 'week',
           title: 'Week',
-          type: 'number'
+          type: 'number',
         },
         {
           name: 'day',
@@ -60,6 +62,7 @@ export default {
     {
       name: 'date',
       title: 'Date',
+      description: '(Optional)',
       type: 'date',
       hidden: ({ document}) => document.type !== 'oneOff',
       options: {
@@ -84,7 +87,7 @@ export default {
     {
       name: 'target',
       title: 'Target Muscle Group(s)',
-      description: 'Select the muscle groups this workout targets or leave blank for full body.',
+      description: 'Select the muscle groups this workout targets.',
       type: 'array',
       of: [ 
         { type: 'reference',
@@ -109,7 +112,7 @@ export default {
     {
       name: 'equipment',
       title: 'Equipment',
-      description: 'Select the equipment you need for these exercises or leave blank for all equipment.',
+      description: 'Select the equipment you need for these exercises.',
       type: 'array',
       of: [ 
         { type: 'reference',

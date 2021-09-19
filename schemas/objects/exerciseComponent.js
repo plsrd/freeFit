@@ -75,6 +75,12 @@ export default {
           })
         }
       ]
+    },
+    {
+      name: 'notes',
+      title: 'Notes',
+      description: '(Optional)',
+      type: 'text'
     }
   ],
   preview: {
