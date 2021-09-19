@@ -13,11 +13,12 @@ const workoutTimeCalculator = React.forwardRef((props, ref) => {
   } = props
 
   const calculateLength = () => {
-   const exerciseTimes =  Math.round(document.exercises.map(exercise => {
+    if (!document.exercises) return 0
+    const exerciseTimes =  document.exercises.map(exercise => {
       return (exercise.info.sets * exercise.info.restTime) + (exercise.info.sets * (exercise.info.reps * 2))
-    }))
+    })
 
-    return exerciseTimes.length > 0 ? exerciseTimes.reduce((a, b) => a + b) / 60 : 0
+    return exerciseTimes.length > 0 ? Math.round(exerciseTimes.reduce((a, b) => a + b) / 60) : 0
   }
 
   const length = calculateLength()

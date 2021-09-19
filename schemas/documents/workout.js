@@ -44,10 +44,9 @@ export default {
             { type: 'target' }
           ],
           options: {
-            filter: ({document}) => {
+            filter: ({ document }) => {
               const existingTargets = document.target.map(target => target._ref).filter(Boolean)
 
-              console.log(existingTargets)
               return {
                 filter: '!(_id in $existingTargets)',
                 params: {
@@ -68,7 +67,18 @@ export default {
         { type: 'reference',
           to: [
             { type: 'equipment' }
-          ]
+          ],
+          options: {
+            filter: ({ document }) => {
+              const existingEquipment = document.equipment.map(equipment => equipment._ref).filter(Boolean)
+              return {
+                filter: '!(_id in $existingEquipment)',
+                params: {
+                  existingEquipment
+                }
+              }
+            }
+          }
         }
       ],
     },
