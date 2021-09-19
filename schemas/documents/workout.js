@@ -10,10 +10,58 @@ export default {
   fields: [
     {
       name: 'title',
-      description: 'Choose the date the workout will be released',
       title: 'Title',
+      type: 'string'
+    },
+    {
+      name: 'type',
+      title: 'Workout Type',
+      type: 'string',
+      options: {
+        list: [
+          {title: 'Part of Program', value: 'program'},
+          {title: 'One-Off', value: 'oneOff'}
+        ],
+        layout: 'radio'
+      }
+    },
+    {
+      name: 'programDay',
+      title: 'Program Day',
+      type: 'object',
+      hidden: ({ document}) => document.type !== 'program',
+      options: {
+        columns: 2
+      },
+      fields: [
+        {
+          name: 'week',
+          title: 'Week',
+          type: 'number'
+        },
+        {
+          name: 'day',
+          title: 'Day',
+          type: 'string',
+          options: {
+            list: [
+              {title: 'Monday', value: 'monday'},
+              {title: 'Tuesday', value: 'tuesday'},
+              {title: 'Wednesday', value: 'wednesday'},
+              {title: 'Thursday', value: 'thursday'},
+              {title: 'Friday', value: 'friday'},
+              {title: 'Saturday', value: 'saturday'},
+              {title: 'Sunday', value: 'sunday'},
+            ]
+          }
+        },
+      ]
+    },
+    {
+      name: 'date',
+      title: 'Date',
       type: 'date',
-      validation: Rule => Rule.required(),
+      hidden: ({ document}) => document.type !== 'oneOff',
       options: {
         dateFormat: 'MM-DD-YY'
       }
@@ -123,9 +171,9 @@ export default {
   orderings: [
     {
       title: 'Release Date',
-      name: 'titleAsc',
+      name: 'dateAsc',
       by: [
-        {field: 'title', direction: 'asc'}
+        {field: 'date', direction: 'asc'}
       ]
     },
   ]

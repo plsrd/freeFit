@@ -70,7 +70,6 @@ export default {
           name: 'restTime',
           title: 'Rest Time in Seconds',
           type: 'number',
-          initialValue: 30,
           validation: Rule => Rule.custom((rest) => {
             return rest >= 30 ? true: 'Each exercise should have a rest of at least 30 seconds'
           })
