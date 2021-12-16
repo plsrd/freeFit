@@ -7,6 +7,8 @@ import exercise from './documents/exercise'
 import target from './documents/target'
 import exerciseComponent from './objects/exerciseComponent'
 import equipment from './documents/equipment'
+import programDay from './objects/programDay'
+import requiredEquipment from './objects/equipment'
 
 export default createSchema({
   name: 'default',
@@ -15,6 +17,8 @@ export default createSchema({
     exercise,
     target,
     exerciseComponent,
-    equipment
+    equipment,
+    programDay,
+    requiredEquipment
   ]),
 })

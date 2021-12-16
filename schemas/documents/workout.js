@@ -1,6 +1,6 @@
 import React from 'react'
 
-import workoutTimeCalculator from '../../src/workoutTimeCalculator'
+import workoutTimeCalculator from '../../src/inputs/workoutTimeCalculator'
 import Tile from '../../static/Tile'
 
 export default {
@@ -13,61 +13,6 @@ export default {
       title: 'Title',
       type: 'string',
       validation: Rule => Rule.required(),
-    },
-    {
-      name: 'type',
-      title: 'Workout Type',
-      type: 'string',
-      validation: Rule => Rule.required(),
-      options: {
-        list: [
-          {title: 'Part of Program', value: 'program'},
-          {title: 'One-Off', value: 'oneOff'}
-        ],
-        layout: 'radio'
-      }
-    },
-    {
-      name: 'programDay',
-      title: 'Program Day',
-      type: 'object',
-      hidden: ({ document}) => document.type !== 'program',
-      options: {
-        columns: 2
-      },
-      fields: [
-        {
-          name: 'week',
-          title: 'Week',
-          type: 'number',
-        },
-        {
-          name: 'day',
-          title: 'Day',
-          type: 'string',
-          options: {
-            list: [
-              {title: 'Monday', value: 'monday'},
-              {title: 'Tuesday', value: 'tuesday'},
-              {title: 'Wednesday', value: 'wednesday'},
-              {title: 'Thursday', value: 'thursday'},
-              {title: 'Friday', value: 'friday'},
-              {title: 'Saturday', value: 'saturday'},
-              {title: 'Sunday', value: 'sunday'},
-            ]
-          }
-        },
-      ]
-    },
-    {
-      name: 'date',
-      title: 'Date',
-      description: '(Optional)',
-      type: 'date',
-      hidden: ({ document}) => document.type !== 'oneOff',
-      options: {
-        dateFormat: 'MM-DD-YY'
-      }
     },
     {
       title: 'Focus',
@@ -112,26 +57,7 @@ export default {
     {
       name: 'equipment',
       title: 'Equipment',
-      description: 'Select the equipment you need for these exercises.',
-      type: 'array',
-      of: [ 
-        { type: 'reference',
-          to: [
-            { type: 'equipment' }
-          ],
-          options: {
-            filter: ({ document }) => {
-              const existingEquipment = document.equipment.map(equipment => equipment._ref).filter(Boolean)
-              return {
-                filter: '!(_id in $existingEquipment)',
-                params: {
-                  existingEquipment
-                }
-              }
-            }
-          }
-        }
-      ],
+      type: 'requiredEquipment'
     },
     {
       name: 'exercises',
