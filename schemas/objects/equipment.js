@@ -1,3 +1,5 @@
+import { createReferenceFilter } from "../../src/utils/createReferenceFilter";
+
 export default {
   name: 'requiredEquipment',
   title: 'Equipment',
@@ -9,15 +11,7 @@ export default {
         { type: 'equipment' }
       ],
       options: {
-        filter: ({ document }) => {
-          const existingEquipment = document.equipment.map(equipment => equipment._ref).filter(Boolean)
-          return {
-            filter: '!(_id in $existingEquipment)',
-            params: {
-              existingEquipment
-            }
-          }
-        }
+        filter: ({ document }) => createReferenceFilter(document, 'requiredEquipment')
       }
     }
   ],
