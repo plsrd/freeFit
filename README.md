@@ -1,9 +1,23 @@
-# Sanity Clean Content Studio
+# Free Fit Studio
 
-Congratulations, you have now installed the Sanity Content Studio, an open source real-time content editing environment connected to the Sanity backend.
+Sanity Studio (v6) for building workouts from a library of exercises, target muscles and equipment.
 
-Now you can do the following things:
+Requires Node.js 22.12 or later.
 
-- [Read “getting started” in the docs](https://www.sanity.io/docs/introduction/getting-started?utm_source=readme)
-- [Join the community Slack](https://slack.sanity.io/?utm_source=readme)
-- [Extend and build plugins](https://www.sanity.io/docs/content-studio/extending?utm_source=readme)
+```bash
+npm install
+npm run dev     # http://localhost:3333
+npm run build
+npm run deploy
+```
+
+## Layout
+
+- `sanity.config.js` / `sanity.cli.js` – Studio and CLI config (project `krm54zrd`, dataset `development`)
+- `schemas/` – document and object types
+- `src/structure.jsx` – custom Structure tool navigation
+- `src/initialValueTemplates.js` – the "Dumbbell Workout" starter template
+- `src/inputs/` – custom field inputs (workout length calculator)
+- `src/components/` – shared React components (preview `Tile`)
+- `src/utils/` – pure helpers (filters, validation, formatting)
+- `static/` – icon images, served at `/static/*`

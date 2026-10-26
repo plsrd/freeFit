@@ -6,31 +6,24 @@
   "main": "package.json",
   "author": "Racheal <racheal.larimer@gmail.com>",
   "license": "UNLICENSED",
+  "type": "module",
+  "engines": {
+    "node": ">=22.12"
+  },
   "scripts": {
+    "dev": "sanity dev",
     "start": "sanity start",
-    "build": "sanity build"
+    "build": "sanity build",
+    "deploy": "sanity deploy"
   },
   "keywords": [
     "sanity"
   ],
   "dependencies": {
-    "@reach/auto-id": "^0.16.0",
-    "@sanity/base": "^2.23.1",
-    "@sanity/components": "^2.14.0",
-    "@sanity/core": "^2.23.1",
-    "@sanity/default-layout": "^2.23.1",
-    "@sanity/default-login": "^2.23.1",
-    "@sanity/desk-tool": "^2.23.1",
-    "@sanity/vision": "^2.23.1",
-    "axios": "^0.21.4",
-    "concurrent-queue": "^7.0.2",
-    "fs": "0.0.1-security",
-    "p-queue": "^7.1.0",
-    "path": "^0.12.7",
-    "prop-types": "^15.7",
-    "react": "^17.0",
-    "react-dom": "^17.0",
-    "styled-components": "^5.3.3",
-    "uuid": "^8.3.2"
+    "@sanity/vision": "^6.20.0",
+    "react": "^19.2.2",
+    "react-dom": "^19.2.2",
+    "sanity": "^6.20.0",
+    "styled-components": "^6.1.15"
   }
 }

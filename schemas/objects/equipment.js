@@ -1,18 +1,18 @@
-import { createReferenceFilter } from "../../src/utils/createReferenceFilter";
+import {defineArrayMember, defineType} from 'sanity'
+import {createReferenceFilter} from '../../src/utils/createReferenceFilter'
 
-export default {
+export default defineType({
   name: 'requiredEquipment',
   title: 'Equipment',
   description: 'Select the equipment you need for these exercises.',
   type: 'array',
-  of: [ 
-    { type: 'reference',
-      to: [
-        { type: 'equipment' }
-      ],
+  of: [
+    defineArrayMember({
+      type: 'reference',
+      to: [{type: 'equipment'}],
       options: {
-        filter: ({ document }) => createReferenceFilter(document, 'requiredEquipment')
-      }
-    }
+        filter: ({parent}) => createReferenceFilter(parent),
+      },
+    }),
   ],
-}
+})
