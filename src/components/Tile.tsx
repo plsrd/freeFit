@@ -1,14 +1,19 @@
 import {getTileIcon} from '../utils/getTileIcon'
 
+interface TileProps {
+  /** Equipment or target name used to pick the icon */
+  equipment?: string
+  /** Background color */
+  color?: string
+  /** Background image URL */
+  background?: string
+}
+
 /**
  * Square icon used as the preview media for documents and structure list items.
  * Icons are served from the Studio's `static/` folder.
- * @param {object} props
- * @param {string} [props.equipment] - Equipment or target name used to pick the icon
- * @param {string} [props.color] - Background color
- * @param {string} [props.background] - Background image URL
  */
-export default function Tile({color, background, equipment}) {
+export default function Tile({color, background, equipment}: TileProps) {
   return (
     <span
       style={{

@@ -40,7 +40,8 @@ export default defineType({
           type: 'reference',
           to: [{type: 'target'}],
           options: {
-            filter: ({parent}) => createReferenceFilter(parent),
+            // For an array member, `parent` is the array itself
+            filter: ({parent}) => createReferenceFilter(Array.isArray(parent) ? parent : []),
           },
         }),
       ],

@@ -3,6 +3,7 @@ import {defineField, defineType} from 'sanity'
 import Tile from '../../src/components/Tile'
 import {createExerciseFilter} from '../../src/utils/createExerciseFilter'
 import {validateForFocus, validateRestTime} from '../../src/utils/validateWorkoutInfo'
+import type {WorkoutDocumentValue} from '../../src/types/workout'
 
 export default defineType({
   name: 'exerciseComponent',
@@ -17,7 +18,8 @@ export default defineType({
       to: [{type: 'exercise'}],
       validation: (rule) => rule.required().error('You must select an exercise'),
       options: {
-        filter: ({document}) => createExerciseFilter(document),
+        // This object only lives inside workout documents
+        filter: ({document}) => createExerciseFilter(document as WorkoutDocumentValue),
       },
     }),
     defineField({

@@ -1,12 +1,13 @@
+import type {StructureResolver} from 'sanity/structure'
+
 import Tile from './components/Tile'
 
 const CUSTOM_LIST_TYPES = ['target', 'workout', 'exercise', 'equipment']
 
 /**
  * Groups exercises by target muscle and equipment, and puts the workout builder first.
- * @type {import('sanity/structure').StructureResolver}
  */
-export const structure = (S) =>
+export const structure: StructureResolver = (S) =>
   S.list()
     .title('Base')
     .items([
@@ -47,6 +48,6 @@ export const structure = (S) =>
         ),
       S.divider(),
       ...S.documentTypeListItems().filter(
-        (listItem) => !CUSTOM_LIST_TYPES.includes(listItem.getId()),
+        (listItem) => !CUSTOM_LIST_TYPES.includes(listItem.getId() ?? ''),
       ),
     ])

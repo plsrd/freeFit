@@ -1,10 +1,14 @@
+import type {ReferenceFilterSearchOptions} from 'sanity'
+import type {WorkoutDocumentValue} from '../types/workout'
+
 /**
  * Limits the exercise picker to exercises that match the workout's chosen
  * target muscles and equipment. With neither chosen, every exercise is shown.
- * @param {{target?: Array<{_ref: string}>, equipment?: Array<{_ref: string}>}} [workout]
- * @returns {{filter?: string, params?: {targets: string[], equipment: string[]}}}
+ * @param workout - The workout document being edited
  */
-export const createExerciseFilter = (workout = {}) => {
+export const createExerciseFilter = (
+  workout: WorkoutDocumentValue = {},
+): ReferenceFilterSearchOptions => {
   const targets = (workout.target ?? []).map(({_ref}) => _ref)
   const equipment = (workout.equipment ?? []).map(({_ref}) => _ref)
 

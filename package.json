@@ -14,7 +14,8 @@
     "dev": "sanity dev",
     "start": "sanity start",
     "build": "sanity build",
-    "deploy": "sanity deploy"
+    "deploy": "sanity deploy",
+    "typecheck": "tsc --noEmit"
   },
   "keywords": [
     "sanity"
@@ -24,6 +25,11 @@
     "react": "^19.2.2",
     "react-dom": "^19.2.2",
     "sanity": "^6.20.0",
-    "styled-components": "^6.1.15"
+    "styled-components": "^6.1.15",
+    "@sanity/ui": "^4.4.10"
+  },
+  "devDependencies": {
+    "@types/react": "^19.2.0",
+    "typescript": "^7.0.2"
   }
 }

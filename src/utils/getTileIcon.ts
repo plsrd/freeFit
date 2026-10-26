@@ -5,10 +5,10 @@ const ARMS = ['Biceps', 'Triceps', 'Forearms']
 /**
  * Maps an equipment or target name to the file name of its icon in `static/`.
  * Several targets share one icon (e.g. all leg muscles use `legs.png`).
- * @param {string} name - Equipment name, target name, or a raw icon key like 'builder'
- * @returns {string} The icon's file name without the extension
+ * @param name - Equipment name, target name, or a raw icon key like 'builder'
+ * @returns The icon's file name without the extension
  */
-export const getTileIcon = (name) => {
+export const getTileIcon = (name: string): string => {
   const iconKey = (() => {
     if (LEGS.includes(name)) return 'legs'
     if (ARMS.includes(name)) return 'target'
@@ -18,5 +18,5 @@ export const getTileIcon = (name) => {
     return name
   })()
 
-  return iconKey.toLowerCase().split(' ')[0]
+  return iconKey.toLowerCase().split(' ')[0] ?? ''
 }

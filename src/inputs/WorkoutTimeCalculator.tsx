@@ -1,16 +1,17 @@
 import {useEffect} from 'react'
-import {set, unset, useFormValue} from 'sanity'
+import {set, unset, useFormValue, type NumberInputProps} from 'sanity'
 import {Card, Text} from '@sanity/ui'
 
 import {calculateWorkoutLength} from '../utils/calculateWorkoutLength'
+import type {ExerciseComponentValue} from '../types/workout'
 
 /**
  * Read-only input that keeps `workoutLength` in sync with the workout's exercises,
  * so the length can be queried and shown in previews without recalculating it.
- * @param {import('sanity').NumberInputProps} props
  */
-export default function WorkoutTimeCalculator({value, onChange}) {
-  const exercises = useFormValue(['exercises'])
+export default function WorkoutTimeCalculator({value, onChange}: NumberInputProps) {
+  // useFormValue is untyped; this input only ever lives on the workout document
+  const exercises = useFormValue(['exercises']) as ExerciseComponentValue[] | undefined
   const length = calculateWorkoutLength(exercises)
 
   useEffect(() => {

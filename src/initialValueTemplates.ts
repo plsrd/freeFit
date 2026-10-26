@@ -1,9 +1,9 @@
+import type {TemplateResolver} from 'sanity'
+
 /**
  * Adds a "Dumbbell Workout" starter template next to the default document templates.
- * @param {import('sanity').Template[]} prev - The Studio's default templates
- * @returns {import('sanity').Template[]}
  */
-export const initialValueTemplates = (prev) => [
+export const initialValueTemplates: TemplateResolver = (prev) => [
   ...prev,
   {
     id: 'dumbbell-workout',

@@ -1,12 +1,14 @@
+import type {ExerciseComponentValue} from '../types/workout'
+
 // Rough time each rep takes, in seconds
 const SECONDS_PER_REP = 4
 
 /**
  * Estimates how long a workout takes from each exercise's sets, reps and rest time.
- * @param {Array<{info?: {sets?: number, reps?: number, restTime?: number}}>} [exercises]
- * @returns {number} Length in whole minutes, or 0 when there's nothing to count
+ * @param exercises - The workout's exercise components
+ * @returns Length in whole minutes, or 0 when there's nothing to count
  */
-export const calculateWorkoutLength = (exercises = []) => {
+export const calculateWorkoutLength = (exercises: ExerciseComponentValue[] = []): number => {
   const totalSeconds = exercises
     .map(({info}) => {
       if (!info) return 0
