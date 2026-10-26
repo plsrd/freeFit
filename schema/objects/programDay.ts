@@ -1,6 +1,6 @@
-import {defineField, defineType} from 'sanity'
+import { defineField, defineType } from 'sanity';
 
-export default defineType({
+export const programDay = defineType({
   name: 'programDay',
   title: 'Program Day',
   type: 'object',
@@ -22,16 +22,16 @@ export default defineType({
       name: 'workout',
       title: 'Workout',
       type: 'reference',
-      to: [{type: 'workout'}],
+      to: [{ type: 'workout' }],
       options: {
-        filter: ({document}) => {
-          const {focus, equipment} = document
+        filter: ({ document }) => {
+          const { focus, equipment } = document;
           return {
             filter: 'focus == $focus && equipment match $equipment',
-            params: {focus, equipment},
-          }
+            params: { focus, equipment },
+          };
         },
       },
     }),
   ],
-})
+});

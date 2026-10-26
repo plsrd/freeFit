@@ -1,7 +1,6 @@
-import {defineField, defineType} from 'sanity'
-import Tile from '../../src/components/Tile'
+import { defineField, defineType } from 'sanity';
 
-export default defineType({
+export const exercise = defineType({
   name: 'exercise',
   title: 'Exercise',
   type: 'document',
@@ -12,18 +11,19 @@ export default defineType({
       type: 'string',
     }),
     defineField({
-      name: 'target',
-      title: 'Main Target Muscle',
+      name: 'targets',
+      title: 'Main Target Muscles',
       description: 'Select the muscle this exercise targets',
-      type: 'reference',
-      to: [{type: 'target'}],
+      type: 'array',
+      of: [{ type: 'reference', to: [{ type: 'muscle' }] }],
     }),
     defineField({
       name: 'equipment',
       title: 'Main Equipment',
-      description: 'Select the main piece of equipment needed for this exercise',
+      description:
+        'Select the main piece of equipment needed for this exercise',
       type: 'reference',
-      to: [{type: 'equipment'}],
+      to: [{ type: 'equipment' }],
     }),
     defineField({
       name: 'demo',
@@ -35,26 +35,24 @@ export default defineType({
     select: {
       title: 'name',
       subtitle: 'target.name',
-      equipment: 'equipment.name',
     },
-    prepare({title, subtitle, equipment}) {
+    prepare({ title, subtitle }) {
       return {
         title,
         subtitle,
-        media: <Tile equipment={equipment} />,
-      }
+      };
     },
   },
   orderings: [
     {
       title: 'Equipment',
       name: 'equipmentAsc',
-      by: [{field: 'equipment.name', direction: 'asc'}],
+      by: [{ field: 'equipment.name', direction: 'asc' }],
     },
     {
       title: 'Target Muscle',
       name: 'targetAsc',
-      by: [{field: 'target.name', direction: 'asc'}],
+      by: [{ field: 'target.name', direction: 'asc' }],
     },
   ],
-})
+});

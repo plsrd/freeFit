@@ -13,6 +13,6 @@
     "skipLibCheck": true,
     "noEmit": true
   },
-  "include": ["sanity.config.ts", "sanity.cli.ts", "schemas", "src"],
+  "include": ["sanity.config.ts", "sanity.cli.ts", "schema", "src"],
   "exclude": ["node_modules", "dist", ".sanity"]
 }

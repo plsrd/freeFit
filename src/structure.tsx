@@ -1,53 +1,42 @@
-import type {StructureResolver} from 'sanity/structure'
+import type { StructureResolver } from 'sanity/structure';
 
-import Tile from './components/Tile'
-
-const CUSTOM_LIST_TYPES = ['target', 'workout', 'exercise', 'equipment']
-
-/**
- * Groups exercises by target muscle and equipment, and puts the workout builder first.
- */
-export const structure: StructureResolver = (S) =>
+export const structure: StructureResolver = S =>
   S.list()
-    .title('Base')
+    .title('Tools')
     .items([
       S.listItem()
         .title('Workout Builder')
-        .icon(() => <Tile equipment="builder" />)
         .child(S.documentTypeList('workout').title('Workout Builder')),
-      S.divider(),
+      S.divider().title('Exercises'),
       S.listItem()
         .title('All Exercises')
-        .icon(() => <Tile equipment="all" />)
         .child(S.documentTypeList('exercise').title('All Exercises')),
       S.listItem()
         .title('Exercises By Target')
-        .icon(() => <Tile equipment="target" />)
         .child(
-          S.documentTypeList('target')
+          S.documentTypeList('muscle')
             .title('Exercises By Target')
-            .child((targetId) =>
+            .child(muscleId =>
               S.documentTypeList('exercise')
                 .title('Exercises')
-                .filter('_type == "exercise" && $targetId == target._ref')
-                .params({targetId}),
+                .filter('_type == "exercise" && $muscleId == muscle._ref')
+                .params({ muscleId }),
             ),
         ),
       S.listItem()
         .title('Exercises By Equipment')
-        .icon(() => <Tile equipment="equipment" />)
         .child(
           S.documentTypeList('equipment')
             .title('Exercises By Equipment')
-            .child((equipmentId) =>
+            .child(equipmentId =>
               S.documentTypeList('exercise')
                 .title('Exercises')
                 .filter('_type == "exercise" && $equipmentId == equipment._ref')
-                .params({equipmentId}),
+                .params({ equipmentId }),
             ),
         ),
-      S.divider(),
-      ...S.documentTypeListItems().filter(
-        (listItem) => !CUSTOM_LIST_TYPES.includes(listItem.getId() ?? ''),
-      ),
-    ])
+      S.divider().title('Taxonomy'),
+      S.documentTypeListItem('equipment'),
+      S.documentTypeListItem('muscle'),
+      S.documentTypeListItem('category'),
+    ]);
